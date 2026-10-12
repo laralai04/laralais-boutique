@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#120d1b">
+<title>L aralai's Boutique | Fashion & Accessories</title>
+<style>
+:root{--bg:#100c16;--panel:#1b1425;--panel2:#241a31;--purple:#a875ff;--purple2:#d3b8ff;--text:#fff9ff;--muted:#c2b7cc;--line:#3a2c49;--gold:#e8d5a8}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at top,#241534 0,#100c16 48%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.wrap{width:min(1120px,92%);margin:auto}
+header{position:sticky;top:0;z-index:10;background:#100c16eF;border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 0}.brand{font-family:Georgia,serif;font-size:1.2rem;letter-spacing:.08em}.brand span{color:var(--purple2)}.navlinks{display:flex;gap:16px;align-items:center}.navlinks a{color:var(--muted);text-decoration:none;font-size:.9rem}.navlinks a:hover{color:white}
+.btn{border:1px solid var(--purple);border-radius:999px;padding:10px 16px;color:white;background:linear-gradient(135deg,#7b43cb,#4e2b78);font-weight:650}.btn.secondary{background:transparent;border-color:var(--line)}.btn.small{padding:7px 12px;font-size:.88rem}.btn:disabled{opacity:.45;cursor:not-allowed}
+.hero{padding:66px 0 48px;display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:center}.eyebrow{color:var(--purple2);text-transform:uppercase;letter-spacing:.18em;font-size:.75rem;font-weight:750}.hero h1{font-family:Georgia,serif;font-size:clamp(2.5rem,7vw,5rem);line-height:1.02;margin:15px 0}.hero h1 em{color:var(--purple2);font-weight:400}.hero p{color:var(--muted);line-height:1.75;max-width:550px}.hero-card{min-height:340px;border:1px solid #59416d;border-radius:28px;background:linear-gradient(145deg,#39204e,#1b1425 60%,#30203b);display:flex;flex-direction:column;justify-content:space-between;padding:25px;box-shadow:0 22px 80px #0005}.hero-art{font-size:6rem;text-align:center;filter:drop-shadow(0 12px 22px #0006)}.hero-card small{color:var(--purple2);letter-spacing:.14em}.hero-card h2{font-family:Georgia,serif;font-size:2rem;margin:8px 0}
+section{padding:26px 0 45px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:20px}.section-head h2{font-family:Georgia,serif;font-size:2rem;margin:0}.section-head p{color:var(--muted);margin:8px 0 0}.filters{display:grid;grid-template-columns:1fr 180px;gap:10px;margin-bottom:20px}.field{width:100%;background:#140f1c;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:12px}.products{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.product{overflow:hidden;background:linear-gradient(160deg,#22182d,#17111f);border:1px solid var(--line);border-radius:18px}.product-image{height:220px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#332142,#17111f);font-size:4.5rem}.product-image img{width:100%;height:100%;object-fit:cover}.product-info{padding:15px}.tag{font-size:.7rem;color:var(--purple2);text-transform:uppercase;letter-spacing:.12em}.product h3{margin:7px 0;font-size:1.03rem}.desc{color:var(--muted);font-size:.86rem;min-height:38px}.price{font-weight:800;margin:12px 0}.product-actions{display:flex;gap:8px}.product-actions button{flex:1}
+.empty{padding:30px;border:1px dashed var(--line);border-radius:16px;color:var(--muted);text-align:center;grid-column:1/-1}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:20px}.panel h3{margin-top:0;font-family:Georgia,serif;font-size:1.45rem}.muted{color:var(--muted);line-height:1.65}.cart-line{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.qty{display:flex;align-items:center;gap:8px}.qty button{border:1px solid var(--line);background:var(--panel2);color:white;border-radius:7px;width:28px;height:28px}.total{display:flex;justify-content:space-between;font-size:1.1rem;font-weight:800;padding:16px 0}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.form-grid .full{grid-column:1/-1}label{display:block;font-size:.85rem;color:var(--muted);margin:4px 0 6px}.note{font-size:.8rem;color:var(--muted);line-height:1.6}.notice{border:1px solid #5c4770;background:#251a32;border-radius:12px;padding:12px;color:#e7d9f5;font-size:.88rem;line-height:1.6}
+footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:.85rem}.footer-row{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+dialog{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:18px;width:min(650px,94vw);max-height:90vh;overflow:auto}dialog::backdrop{background:#000b}.modal-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.admin-products{display:grid;gap:10px}.admin-row{display:grid;grid-template-columns:1fr auto;gap:10px;padding:12px;border:1px solid var(--line);border-radius:12px}.hidden{display:none!important}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding-top:40px}.hero-card{min-height:250px}.hero-art{font-size:4rem}.products{grid-template-columns:repeat(2,1fr)}.product-image{height:170px}.split{grid-template-columns:1fr}.navlinks a{display:none}.filters{grid-template-columns:1fr 130px}.section-head h2{font-size:1.65rem}}
+@media(max-width:430px){.products{grid-template-columns:1fr 1fr;gap:10px}.product-image{height:140px;font-size:3rem}.product-info{padding:11px}.product h3{font-size:.93rem}.product-actions{flex-direction:column}.hero h1{font-size:2.8rem}.form-grid{grid-template-columns:1fr}.form-grid .full{grid-column:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="#" style="color:inherit;text-decoration:none">LARALAI'S <span>BOUTIQUE</span></a>
+  <nav class="navlinks"><a href="#shop">Shop</a><a href="#order">How to Order</a><a href="#contact">Contact</a></nav>
+  <button class="btn small" onclick="document.querySelector('#cartPanel').scrollIntoView({behavior:'smooth'})">Bag (<span id="cartCount">0</span>)</button>
+</div></header>
+<main class="wrap">
+  <section class="hero">
+    <div><div class="eyebrow">Style • Confidence • You</div><h1>Make every<br>look <em>feel special.</em></h1>
+      <p>Curated fashion and accessories for your everyday glow. Find your next favourite piece at Laralai's Boutique.</p>
+      <a href="#shop"><button class="btn">Explore the collection ↗</button></a>
+    </div>
+    <div class="hero-card"><small>THE PURPLE EDIT</small><div class="hero-art">✦ ♡ ✦</div><div><h2>Little details.<br>Big energy.</h2><div class="muted">Your style, your story.</div></div></div>
+  </section>
+  <section id="shop">
+    <div class="section-head"><div><div class="eyebrow">Curated for you</div><h2>Shop the collection</h2><p>Choose a piece and add it to your bag.</p></div></div>
+    <div class="filters"><input id="search" class="field" placeholder="Search products..." aria-label="Search products" oninput="renderProducts()">
+      <select id="category" class="field" aria-label="Filter by category" onchange="renderProducts()"><option value="All">All categories</option><option>Clothing</option><option>Accessories</option><option>Bags</option><option>Other</option></select>
+    </div>
+    <div id="products" class="products"></div>
+  </section>
+  <section id="order">
+    <div class="section-head"><div><div class="eyebrow">Easy checkout</div><h2>Your order</h2><p>Review your bag and send your order details.</p></div></div>
+    <div class="split">
+      <div id="cartPanel" class="panel"><h3>Shopping bag</h3><div id="cartItems"></div><div class="total"><span>Total</span><span id="cartTotal">0 MMK</span></div><div class="note">Delivery fees, if any, will be confirmed by the shop before payment.</div></div>
+      <div class="panel"><h3>Order form</h3>
+        <form id="orderForm" class="form-grid">
+          <div><label for="customerName">Full name *</label><input id="customerName" class="field" required maxlength="80" autocomplete="name"></div>
+          <div><label for="phone">Phone number *</label><input id="phone" class="field" required maxlength="30" autocomplete="tel" inputmode="tel"></div>
+          <div class="full"><label for="fulfillment">Pickup or delivery *</label><select id="fulfillment" class="field" required><option value="Delivery">Delivery</option><option value="Pickup">Pickup</option></select></div>
+          <div class="full"><label for="address">Delivery address / pickup note</label><textarea id="address" class="field" rows="2" maxlength="300" placeholder="Township, street, or pickup arrangement"></textarea></div>
+          <div class="full"><label for="payment">Preferred payment</label><select id="payment" class="field"><option>KBZPay</option><option>WavePay</option><option>Cash on delivery / pickup</option><option>Ask me first</option></select></div>
+          <div class="full"><label for="notes">Extra notes (size, colour, etc.)</label><textarea id="notes" class="field" rows="2" maxlength="400" placeholder="Optional"></textarea></div>
+          <div class="full"><button class="btn" style="width:100%" type="submit">Prepare my order</button></div>
+        </form>
+        <p class="note">This demo prepares an order summary on your device. It does not charge payments or automatically save orders to a shop database.</p>
+        <div id="orderResult" class="notice hidden" aria-live="polite"></div>
+        <button id="messengerBtn" class="btn secondary hidden" style="width:100%;margin-top:10px" onclick="openMessenger()">Continue to Messenger ↗</button>
+      </div>
+    </div>
+  </section>
+  <section id="contact"><div class="panel"><div class="eyebrow">Need help?</div><h3>We're happy to help.</h3><p class="muted">For product availability, sizing, delivery and payment confirmation, contact Laralai's Boutique on Telegram or follow the shop on TikTok.</p><div style="display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 18px"><a class="btn" href="https://t.me/laralai04" target="_blank" rel="noopener noreferrer" style="text-decoration:none">Message on Telegram ↗</a><a class="btn secondary" href="https://www.tiktok.com/@laralai_2004" target="_blank" rel="noopener noreferrer" style="text-decoration:none">Follow on TikTok ↗</a></div><div class="notice">Payment safety: only pay to a payment account confirmed by the shop owner. Never enter your PIN or OTP on this website.</div></div></section>
+</main>
+<footer><div class="wrap footer-row"><span>© <span id="year"></span> Laralai's Boutique</span><span>Made with ♡ in purple & black</span><span><a href="https://t.me/laralai04" target="_blank" rel="noopener noreferrer" style="color:#d3b8ff">Telegram</a> · <a href="https://www.tiktok.com/@laralai_2004" target="_blank" rel="noopener noreferrer" style="color:#d3b8ff">TikTok</a></span><button class="btn secondary small" onclick="openAdmin()">Shop owner: Manage products</button></div></footer>
+
+<dialog id="adminDialog">
+  <div class="modal-head"><h2>Shop owner admin</h2><button class="btn secondary small" onclick="closeAdmin()">Close</button></div>
+  <div class="notice">Demo admin: changes are saved only in this browser on this device. This is not a secure multi-user admin system. Before public launch, add real authentication and a database.</div>
+  <h3>Add / edit product</h3>
+  <form id="productForm" class="form-grid">
+    <input id="editId" type="hidden">
+    <div class="full"><label for="pName">Product name *</label><input id="pName" class="field" required maxlength="100"></div>
+    <div><label for="pPrice">Price (MMK) *</label><input id="pPrice" class="field" type="number" min="0" step="100" required></div>
+    <div><label for="pCategory">Category</label><select id="pCategory" class="field"><option>Clothing</option><option>Accessories</option><option>Bags</option><option>Other</option></select></div>
+    <div class="full"><label for="pImage">Image URL (optional)</label><input id="pImage" class="field" type="url" placeholder="https://..."></div>
+    <div class="full"><label for="pDesc">Description</label><textarea id="pDesc" class="field" rows="2" maxlength="250"></textarea></div>
+    <div class="full"><button class="btn" type="submit">Save product</button> <button class="btn secondary" type="button" onclick="resetProductForm()">Clear</button></div>
+  </form>
+  <h3>Current products</h3><div id="adminProducts" class="admin-products"></div>
+  <p class="note">Tip: sample products are placeholders. Replace names, prices, and photos with your real inventory.</p>
+</dialog>
+<script>
+const STORAGE_PRODUCTS='laralais_products_v1';
+const STORAGE_CART='laralais_cart_v1';
+// Add your real Facebook Messenger page link here before publishing:
+const MESSENGER_PAGE_URL = '';
+const seedProducts=[
+ {id:'p1',name:'Everyday Knit Top',price:18000,category:'Clothing',description:'An easy-to-style everyday piece.',emoji:'✧',image:''},
+ {id:'p2',name:'Soft Satin Scarf',price:12000,category:'Accessories',description:'A soft accent for your favourite outfit.',emoji:'〰',image:''},
+ {id:'p3',name:'Mini Shoulder Bag',price:28000,category:'Bags',description:'A compact bag for daily essentials.',emoji:'♧',image:''},
+ {id:'p4',name:'Classic Hair Clip Set',price:8000,category:'Accessories',description:'Simple finishing touches for your look.',emoji:'❀',image:''},
+ {id:'p5',name:'Relaxed Cardigan',price:32000,category:'Clothing',description:'A cosy layer for casual days.',emoji:'♢',image:''},
+ {id:'p6',name:'Charm Keychain',price:6500,category:'Other',description:'A little charm to personalise your bag.',emoji:'♡',image:''}
+];
+const money=n=>new Intl.NumberFormat('en-US').format(n)+' MMK';
+function loadProducts(){try{const x=JSON.parse(localStorage.getItem(STORAGE_PRODUCTS));return Array.isArray(x)?x:seedProducts.slice()}catch{return seedProducts.slice()}}
+function loadCart(){try{const x=JSON.parse(localStorage.getItem(STORAGE_CART));return x&&typeof x==='object'?x:{}}catch{return {}}}
+let products=loadProducts(),cart=loadCart(),lastOrderText='';
+function saveProducts(){localStorage.setItem(STORAGE_PRODUCTS,JSON.stringify(products))}
+function saveCart(){localStorage.setItem(STORAGE_CART,JSON.stringify(cart))}
+function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderProducts(){
+ const q=document.querySelector('#search').value.trim().toLowerCase(),cat=document.querySelector('#category').value;
+ const list=products.filter(p=>(cat==='All'||p.category===cat)&&(`${p.name} ${p.description} ${p.category}`).toLowerCase().includes(q));
+ document.querySelector('#products').innerHTML=list.length?list.map(p=>`<article class="product"><div class="product-image">${p.image?`<img src="${safe(p.image)}" alt="${safe(p.name)}" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='${safe(p.emoji||'✦')}'">`:safe(p.emoji||'✦')}</div><div class="product-info"><div class="tag">${safe(p.category)}</div><h3>${safe(p.name)}</h3><div class="desc">${safe(p.description||'A lovely addition to your collection.')}</div><div class="price">${money(Number(p.price)||0)}</div><div class="product-actions"><button class="btn small" onclick="addToCart('${safe(p.id)}')">Add to bag</button><button class="btn secondary small" onclick="quickOrder('${safe(p.id)}')">Details</button></div></div></article>`).join(''):'<div class="empty">No products found. Try another search or category.</div>';
+}
+function addToCart(id){if(!products.some(p=>p.id===id))return;cart[id]=(cart[id]||0)+1;saveCart();renderCart()}
+function quickOrder(id){const p=products.find(x=>x.id===id);if(!p)return;alert(`${p.name}\\n${money(p.price)}\\n\\n${p.description||''}\\n\\nChoose “Add to bag” to order.`)}
+function changeQty(id,delta){cart[id]=(cart[id]||0)+delta;if(cart[id]<=0)delete cart[id];saveCart();renderCart()}
+function renderCart(){
+ const entries=Object.entries(cart).filter(([id,n])=>products.some(p=>p.id===id)&&n>0);
+ let count=0,total=0;
+ document.querySelector('#cartItems').innerHTML=entries.length?entries.map(([id,n])=>{const p=products.find(x=>x.id===id);count+=n;total+=p.price*n;return `<div class="cart-line"><div><strong>${safe(p.name)}</strong><div class="muted">${money(p.price)} each</div></div><div class="qty"><button aria-label="Decrease quantity" onclick="changeQty('${safe(id)}',-1)">−</button><span>${n}</span><button aria-label="Increase quantity" onclick="changeQty('${safe(id)}',1)">+</button></div></div>`}).join(''):'<p class="muted">Your bag is empty. Add a product to get started.</p>';
+ document.querySelector('#cartCount').textContent=count;document.querySelector('#cartTotal').textContent=money(total);
+}
+function openAdmin(){document.querySelector('#adminDialog').showModal();renderAdminProducts()}
+function closeAdmin(){document.querySelector('#adminDialog').close()}
+function resetProductForm(){document.querySelector('#productForm').reset();document.querySelector('#editId').value=''}
+function renderAdminProducts(){document.querySelector('#adminProducts').innerHTML=products.map(p=>`<div class="admin-row"><div><strong>${safe(p.name)}</strong><div class="muted">${money(p.price)} · ${safe(p.category)}</div></div><div style="display:flex;gap:6px;align-items:center"><button class="btn secondary small" onclick="editProduct('${safe(p.id)}')">Edit</button><button class="btn secondary small" onclick="deleteProduct('${safe(p.id)}')">Delete</button></div></div>`).join('')||'<p class="muted">No products yet.</p>'}
+function editProduct(id){const p=products.find(x=>x.id===id);if(!p)return;document.querySelector('#editId').value=p.id;document.querySelector('#pName').value=p.name;document.querySelector('#pPrice').value=p.price;document.querySelector('#pCategory').value=p.category;document.querySelector('#pImage').value=p.image||'';document.querySelector('#pDesc').value=p.description||'';document.querySelector('#pName').focus()}
+function deleteProduct(id){if(!confirm('Delete this product?'))return;products=products.filter(p=>p.id!==id);delete cart[id];saveProducts();saveCart();renderProducts();renderCart();renderAdminProducts()}
+document.querySelector('#productForm').addEventListener('submit',e=>{e.preventDefault();const id=document.querySelector('#editId').value||'p'+Date.now();const item={id,name:document.querySelector('#pName').value.trim(),price:Number(document.querySelector('#pPrice').value),category:document.querySelector('#pCategory').value,image:document.querySelector('#pImage').value.trim(),description:document.querySelector('#pDesc').value.trim(),emoji:'✦'};if(!item.name||!Number.isFinite(item.price)||item.price<0)return;const i=products.findIndex(p=>p.id===id);if(i>=0)products[i]=item;else products.unshift(item);saveProducts();renderProducts();renderAdminProducts();resetProductForm()});
+document.querySelector('#orderForm').addEventListener('submit',e=>{
+ e.preventDefault();const entries=Object.entries(cart).filter(([id,n])=>products.some(p=>p.id===id)&&n>0);
+ if(!entries.length){alert('Your shopping bag is empty. Please add a product first.');return}
+ const lines=entries.map(([id,n])=>{const p=products.find(x=>x.id===id);return `• ${p.name} × ${n} — ${money(p.price*n)}`});
+ const total=entries.reduce((sum,[id,n])=>sum+products.find(p=>p.id===id).price*n,0);
+ const name=document.querySelector('#customerName').value.trim(),phone=document.querySelector('#phone').value.trim(),method=document.querySelector('#fulfillment').value,address=document.querySelector('#address').value.trim(),payment=document.querySelector('#payment').value,notes=document.querySelector('#notes').value.trim();
+ lastOrderText=`ORDER — LARALAI'S BOUTIQUE\\n\\nCustomer: ${name}\\nPhone: ${phone}\\n${method}: ${address||'Please confirm details'}\\nPreferred payment: ${payment}\\n\\nItems:\\n${lines.join('\\n')}\\n\\nSubtotal: ${money(total)}\\nDelivery fee: To be confirmed\\nNotes: ${notes||'None'}\\n\\nPlease confirm stock, total and payment details before payment.`;
+ const result=document.querySelector('#orderResult');result.classList.remove('hidden');result.innerHTML=`<strong>Order summary prepared!</strong><p class="muted">Copy the order summary, then send it to the shop owner on Telegram to confirm stock, delivery and payment. This demo does not automatically submit orders or process payments.</p><button class="btn small" onclick="copyOrder()">Copy order summary</button> <a class="btn secondary small" href="https://t.me/laralai04" target="_blank" rel="noopener noreferrer" style="text-decoration:none">Open Telegram ↗</a>`;
+ const mb=document.querySelector('#messengerBtn');mb.classList.remove('hidden');
+});
+function copyOrder(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(lastOrderText).then(()=>alert('Order summary copied.')).catch(()=>window.prompt('Copy your order summary:',lastOrderText))}else{window.prompt('Copy your order summary:',lastOrderText)}}
+function openMessenger(){if(MESSENGER_PAGE_URL){window.open(MESSENGER_PAGE_URL,'_blank','noopener,noreferrer')}else{alert('Shop owner: add your Facebook Page or Messenger link to MESSENGER_PAGE_URL in index.html, then publish the updated site. You can copy your order summary first.')}} 
+document.querySelector('#year').textContent=new Date().getFullYear();renderProducts();renderCart();
+</script>
+</body>
+</html>
