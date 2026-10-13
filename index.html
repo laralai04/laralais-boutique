@@ -2,788 +2,1310 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#faf7ff">
-<title>LARALAI'S BOUTIQUE</title>
-
-<style>
-:root {
-  --lavender: #f5f0ff;
-  --light: #faf7ff;
-  --purple: #6c4b86;
-  --dark: #382743;
-  --gold: #b99a5b;
-  --white: #ffffff;
-  --border: #e8dff0;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: var(--dark);
-  background: var(--white);
-}
-
-button, input, select, textarea {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.topbar {
-  background: var(--dark);
-  color: white;
-  text-align: center;
-  padding: 10px;
-  font-size: 12px;
-  letter-spacing: 1px;
-}
-
-header {
-  background: white;
-  border-bottom: 1px solid var(--border);
-  padding: 18px 6%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-.brand {
-  color: var(--purple);
-  font-family: Georgia, serif;
-  font-size: 21px;
-  letter-spacing: 2px;
-  font-weight: bold;
-}
-
-.brand small {
-  display: block;
-  font: 10px Arial, sans-serif;
-  color: var(--gold);
-  letter-spacing: 4px;
-  text-align: center;
-  margin-top: 5px;
-}
-
-nav {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-
-nav a {
-  font-size: 13px;
-}
-
-nav a:hover {
-  color: var(--gold);
-}
-
-.cart-button {
-  background: var(--purple);
-  color: white;
-  border: 0;
-  padding: 11px 15px;
-  border-radius: 30px;
-}
-
-.hero {
-  padding: 65px 7%;
-  background: linear-gradient(130deg, #eee5fc, #ffffff 65%, #f7f0df);
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  align-items: center;
-  gap: 35px;
-  min-height: 420px;
-}
-
-.eyebrow {
-  color: var(--gold);
-  letter-spacing: 3px;
-  font-size: 11px;
-  font-weight: bold;
-}
-
-.hero h1 {
-  font-family: Georgia, serif;
-  font-size: clamp(36px, 5vw, 60px);
-  line-height: 1.12;
-  font-weight: normal;
-  margin: 18px 0;
-}
-
-.hero h1 em {
-  color: var(--purple);
-}
-
-.hero p {
-  color: #786b80;
-  line-height: 1.8;
-  max-width: 430px;
-}
-
-.primary-button {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 14px 23px;
-  border: 0;
-  border-radius: 4px;
-  background: var(--purple);
-  color: white;
-  letter-spacing: 1px;
-  font-size: 12px;
-}
-
-.primary-button:hover {
-  background: var(--dark);
-}
-
-.hero-art {
-  min-height: 270px;
-  border: 1px solid #e3d4ed;
-  border-radius: 150px 150px 18px 18px;
-  background: linear-gradient(145deg, white, #e7d9f7 65%, #d7c4eb);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 25px;
-}
-
-.flower {
-  font-size: 76px;
-  display: block;
-  margin-bottom: 16px;
-  color: var(--purple);
-}
-
-.hero-art strong {
-  font-family: Georgia, serif;
-  font-size: 25px;
-  font-weight: normal;
-}
-
-.section {
-  padding: 60px 6%;
-  background: white;
-}
-
-.section-heading {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.section-heading h2,
-.about h2 {
-  font: normal 35px Georgia, serif;
-  margin: 10px 0;
-}
-
-.section-heading p {
-  color: #887b91;
-  font-size: 13px;
-}
-
-.toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 25px;
-}
-
-.search, .category, .field {
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  background: white;
-  color: var(--dark);
-}
-
-.search {
-  flex: 1;
-  min-width: 170px;
-}
-
-.category {
-  min-width: 145px;
-}
-
-.products {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.product {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
-  background: white;
-  transition: transform .2s, box-shadow .2s;
-}
-
-.product:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px #6c4b8615;
-}
-
-.product-image {
-  min-height: 190px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background: linear-gradient(140deg, #faf7ff, #e9def8);
-  font-size: 55px;
-}
-
-.product-image span {
-  font-size: 10px;
-  color: var(--purple);
-  letter-spacing: 2px;
-  margin-top: 10px;
-}
-
-.product-info {
-  padding: 16px;
-}
-
-.product-info h3 {
-  font: normal 18px Georgia, serif;
-  margin: 0 0 9px;
-}
-
-.product-info p {
-  color: #82748c;
-  font-size: 12px;
-}
-
-.price {
-  color: var(--purple);
-  font-weight: bold;
-  margin: 13px 0;
-}
-
-.add-button {
-  width: 100%;
-  padding: 11px 6px;
-  border: 1px solid var(--purple);
-  border-radius: 4px;
-  color: var(--purple);
-  background: white;
-}
-
-.add-button:hover {
-  background: var(--purple);
-  color: white;
-}
-
-.empty {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 30px;
-}
-
-.about {
-  text-align: center;
-  background: var(--light);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.about p {
-  max-width: 550px;
-  margin: 15px auto;
-  line-height: 1.9;
-  color: #786b80;
-}
-
-.order-layout {
-  display: grid;
-  grid-template-columns: .8fr 1.2fr;
-  gap: 30px;
-  align-items: start;
-}
-
-.cart-panel, .order-panel {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 22px;
-  background: white;
-  color: var(--dark);
-}
-
-.cart-panel h3, .order-panel h3 {
-  font: normal 23px Georgia, serif;
-  margin-top: 0;
-}
-
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 13px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 13px;
-}
-
-.cart-item button {
-  border: 0;
-  background: transparent;
-  color: #a05d75;
-}
-
-.total {
-  text-align: right;
-  font-weight: bold;
-  margin-top: 20px;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  font-size: 13px;
-  margin-bottom: 7px;
-}
-
-.field {
-  width: 100%;
-}
-
-textarea.field {
-  min-height: 85px;
-  resize: vertical;
-}
-
-.form-note {
-  font-size: 12px;
-  line-height: 1.7;
-  color: #81738a;
-}
-
-#message {
-  display: none;
-  padding: 13px;
-  margin-top: 15px;
-  background: var(--light);
-  color: var(--dark);
-  border: 1px solid var(--border);
-  line-height: 1.7;
-  font-size: 13px;
-  overflow-wrap: anywhere;
-}
-
-footer {
-  padding: 32px 6%;
-  text-align: center;
-  background: var(--dark);
-  color: white;
-}
-
-footer .brand {
-  color: #e9dcfa;
-}
-
-footer p {
-  color: #d5c7df;
-  font-size: 12px;
-  line-height: 1.8;
-}
-
-footer a {
-  color: #e7cf9a;
-}
-
-@media (max-width: 800px) {
-  header {
-    padding: 16px 4%;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    gap: 18px;
-  }
-
-  .brand {
-    font-size: 18px;
-  }
-
-  .hero {
-    grid-template-columns: 1fr;
-    padding: 45px 6%;
-  }
-
-  .hero-art {
-    min-height: 220px;
-  }
-
-  .products {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  .product-image {
-    min-height: 150px;
-  }
-
-  .section {
-    padding: 45px 5%;
-  }
-
-  .order-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 360px) {
-  .products {
-    grid-template-columns: 1fr;
-  }
-
-  nav {
-    gap: 12px;
-  }
-
-  nav a {
-    font-size: 12px;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#faf7ff">
+  <meta name="description" content="Discover lovely fashion, accessories and everyday favorites at LARALAI'S BOUTIQUE.">
+  <title>LARALAI'S BOUTIQUE | Elegance in Every Detail</title>
+
+  <style>
+    :root {
+      --lavender: #f1e8ff;
+      --lavender-light: #faf7ff;
+      --lavender-card: #eee3fa;
+      --purple: #80619a;
+      --purple-dark: #5b426e;
+      --gold: #b99a5b;
+      --white: #ffffff;
+      --text: #45374e;
+      --muted: #887d90;
+      --border: #e8dff0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--lavender-light);
+      color-scheme: light;
+      scroll-behavior: smooth;
+      scroll-padding-top: 20px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--lavender-light) !important;
+      color: var(--text) !important;
+      font-family: Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input, textarea {
+      font: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .announcement {
+      padding: 10px 12px;
+      text-align: center;
+      background: var(--lavender) !important;
+      color: var(--purple-dark);
+      font-size: 11px;
+      letter-spacing: 1.3px;
+    }
+
+    .site-header {
+      position: relative;
+      z-index: 5;
+      background: var(--white) !important;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1150px;
+      min-height: 84px;
+      margin: auto;
+      padding: 15px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      color: var(--purple-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      letter-spacing: 2px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .brand small {
+      display: block;
+      margin-top: 5px;
+      color: var(--gold);
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      font-size: 12px;
+      color: var(--purple-dark);
+    }
+
+    .nav-links a:hover,
+    .social-links a:hover {
+      color: var(--gold);
+    }
+
+    .bag-button {
+      border: 0;
+      border-radius: 4px;
+      padding: 11px 15px;
+      background: var(--purple);
+      color: var(--white);
+      font-size: 12px;
+    }
+
+    .hero {
+      background: linear-gradient(
+        120deg,
+        #eee2ff 0%,
+        #faf7ff 58%,
+        #fffaf0 100%
+      ) !important;
+      padding: 55px 24px;
+    }
+
+    .hero-inner {
+      max-width: 1050px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 42px;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.4px;
+    }
+
+    .hero h1 {
+      margin: 17px 0;
+      color: var(--purple-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 5.4vw, 63px);
+      font-weight: normal;
+      line-height: 1.12;
+    }
+
+    .hero h1 em {
+      color: var(--gold);
+      font-weight: normal;
+    }
+
+    .hero-copy {
+      max-width: 400px;
+      color: #756780;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .primary-button {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 13px 20px;
+      border: 1px solid var(--purple);
+      border-radius: 4px;
+      background: var(--purple);
+      color: var(--white);
+      font-size: 12px;
+      transition: background 0.2s;
+    }
+
+    .primary-button:hover,
+    .submit-button:hover {
+      background: var(--purple-dark);
+    }
+
+    .hero-art {
+      min-height: 305px;
+      padding: 25px;
+      border: 1px solid #e4d5ee;
+      border-radius: 160px 160px 5px 5px;
+      background: linear-gradient(
+        145deg,
+        #e6d7f5,
+        #ffffff 60%,
+        #f8edd5
+      ) !important;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-flower {
+      font-size: 76px;
+      line-height: 1.3;
+    }
+
+    .hero-art-title {
+      margin-top: 13px;
+      color: var(--purple-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 23px;
+    }
+
+    .hero-art-subtitle {
+      margin-top: 10px;
+      color: var(--gold);
+      font-size: 9px;
+      letter-spacing: 3px;
+    }
+
+    .benefits {
+      padding: 22px 20px;
+      background: var(--white) !important;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .benefits-inner {
+      max-width: 900px;
+      margin: auto;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .benefit {
+      color: #756780;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .benefit span {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--gold);
+      font-size: 18px;
+    }
+
+    .shop-section {
+      padding: 58px 24px 65px;
+      background: var(--lavender-light) !important;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: auto;
+    }
+
+    .section-heading {
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      margin: 11px 0 8px;
+      color: var(--purple-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      font-weight: normal;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .shop-tools {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 180px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      outline-color: var(--purple);
+      background: var(--white);
+      color: var(--text);
+      font-size: 12px;
+    }
+
+    .filters {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .filter-button {
+      padding: 10px 12px;
+      border: 1px solid #e4d7ec;
+      border-radius: 4px;
+      background: var(--white);
+      color: var(--purple-dark);
+      font-size: 11px;
+    }
+
+    .filter-button.active {
+      border-color: var(--purple);
+      background: var(--purple);
+      color: var(--white);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .product-card {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      background: var(--white) !important;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 22px #80619a12;
+    }
+
+    .product-visual {
+      position: relative;
+      min-height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(
+        145deg,
+        #eee3fa,
+        #fffaf1
+      ) !important;
+    }
+
+    .product-visual.clothing {
+      background: linear-gradient(
+        145deg,
+        #fff5e8,
+        #f4eafa
+      ) !important;
+    }
+
+    .product-visual.accessories {
+      background: linear-gradient(
+        145deg,
+        #f9eaf3,
+        #f3edff
+      ) !important;
+    }
+
+    .product-emoji {
+      font-size: 57px;
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 5px 7px;
+      background: var(--white);
+      color: var(--gold);
+      font-size: 8px;
+      letter-spacing: 1px;
+    }
+
+    .product-info {
+      padding: 14px;
+    }
+
+    .product-category {
+      color: var(--gold);
+      font-size: 9px;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    .product-info h3 {
+      margin: 9px 0 7px;
+      color: var(--purple-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 16px;
+      font-weight: normal;
+      line-height: 1.4;
+    }
+
+    .product-description {
+      min-height: 34px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .product-price {
+      margin: 12px 0;
+      color: var(--purple);
+      font-size: 12px;
+    }
+
+    .add-button {
+      width: 100%;
+      padding: 10px 5px;
+      border: 1px solid #e5d8ef;
+      border-radius: 3px;
+      background: var(--lavender);
+      color: var(--purple-dark);
+      font-size: 11px;
+    }
+
+    .add-button:hover {
+      background: var(--purple);
+      color: var(--white);
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      padding: 30px 10px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .about-section {
+      padding: 54px 24px;
+      background: var(--white) !important;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-inner {
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .about-inner h2 {
+      margin: 12px 0;
+      color: var(--purple-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 32px;
+      font-weight: normal;
+    }
+
+    .gold-divider {
+      width: 48px;
+      height: 1px;
+      margin: 20px auto;
+      background: var(--gold);
+    }
+
+    .about-inner p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 2;
+    }
+
+    .order-section {
+      padding: 55px 20px;
+      background: var(--lavender) !important;
+    }
+
+    .order-card {
+      max-width: 590px;
+      margin: auto;
+      padding: 28px;
+      border: 1px solid #e4d5ee;
+      border-radius: 5px;
+      background: var(--white) !important;
+    }
+
+    .order-card .section-heading {
+      margin-bottom: 18px;
+    }
+
+    .order-card .section-heading h2 {
+      font-size: 30px;
+    }
+
+    .order-intro {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.9;
+      text-align: center;
+    }
+
+    .cart-box {
+      margin: 22px 0;
+      padding: 13px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--lavender-light) !important;
+    }
+
+    .cart-empty {
+      margin: 8px 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .cart-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 11px;
+    }
+
+    .cart-row:last-child {
+      border-bottom: 0;
+    }
+
+    .cart-name {
+      color: var(--purple-dark);
+      line-height: 1.6;
+    }
+
+    .cart-price {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quantity-controls button {
+      width: 25px;
+      height: 25px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      background: var(--white);
+      color: var(--purple-dark);
+    }
+
+    .remove-button {
+      display: block;
+      margin-top: 5px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: #a17e8e;
+      font-size: 10px;
+    }
+
+    .cart-total {
+      margin-top: 12px;
+      color: var(--purple-dark);
+      font-size: 12px;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    .field {
+      margin-top: 16px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--purple-dark);
+      font-size: 11px;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      outline-color: var(--purple);
+      background: var(--white);
+      color: var(--text);
+      font-size: 12px;
+    }
+
+    .field textarea {
+      min-height: 75px;
+      resize: vertical;
+    }
+
+    .submit-button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 13px;
+      border: 0;
+      border-radius: 4px;
+      background: var(--purple);
+      color: var(--white);
+      font-size: 12px;
+    }
+
+    .form-message {
+      margin-top: 12px;
+      color: var(--purple-dark);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .site-footer {
+      padding: 33px 20px 22px;
+      background: var(--white) !important;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .footer-brand {
+      color: var(--purple-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 19px;
+      letter-spacing: 2px;
+    }
+
+    .site-footer p {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      margin: 18px 0;
+      color: var(--purple);
+      font-size: 11px;
+    }
+
+    .copyright {
+      margin-top: 23px;
+      color: #a79aac;
+      font-size: 10px;
+    }
+
+    @media (max-width: 850px) {
+      .hero-inner {
+        gap: 24px;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .product-visual {
+        min-height: 165px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .nav {
+        min-height: 70px;
+        padding: 12px;
+        gap: 8px;
+      }
+
+      .brand {
+        font-size: 15px;
+        letter-spacing: 1px;
+      }
+
+      .brand small {
+        font-size: 7px;
+        letter-spacing: 3px;
+      }
+
+      .nav-links {
+        gap: 10px;
+        font-size: 10px;
+      }
+
+      .bag-button {
+        padding: 9px 10px;
+        font-size: 10px;
+      }
+
+      .hero {
+        padding: 39px 20px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .hero h1 {
+        font-size: 43px;
+      }
+
+      .hero-art {
+        min-height: 230px;
+      }
+
+      .hero-flower {
+        font-size: 63px;
+      }
+
+      .benefits {
+        padding: 18px 10px;
+      }
+
+      .benefits-inner {
+        gap: 15px 10px;
+      }
+
+      .benefit {
+        flex: 1 1 27%;
+        font-size: 10px;
+      }
+
+      .shop-section {
+        padding: 43px 13px 48px;
+      }
+
+      .section-heading h2 {
+        font-size: 29px;
+      }
+
+      .shop-tools {
+        align-items: stretch;
+      }
+
+      .search-input {
+        flex-basis: 100%;
+      }
+
+      .filters {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .filter-button {
+        padding: 9px 10px;
+      }
+
+      .products-grid {
+        gap: 10px;
+      }
+
+      .product-visual {
+        min-height: 135px;
+      }
+
+      .product-emoji {
+        font-size: 46px;
+      }
+
+      .product-info {
+        padding: 11px;
+      }
+
+      .product-info h3 {
+        font-size: 14px;
+      }
+
+      .product-description {
+        font-size: 10px;
+      }
+
+      .product-tag {
+        top: 7px;
+        left: 7px;
+        font-size: 7px;
+      }
+
+      .about-section {
+        padding: 43px 20px;
+      }
+
+      .about-inner h2 {
+        font-size: 28px;
+      }
+
+      .order-section {
+        padding: 40px 12px;
+      }
+
+      .order-card {
+        padding: 21px 14px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<div class="topbar">A LITTLE BEAUTY IN EVERY DETAIL ✨</div>
 
-<header>
-  <a class="brand" href="#home">
-    LARALAI'S
-    <small>B O U T I Q U E</small>
-  </a>
+  <div class="announcement">
+    A LITTLE BEAUTY, A LOT OF ELEGANCE ✦
+  </div>
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#shop">Shop</a>
-    <a href="#about">About</a>
-    <a href="#order">Order</a>
-  </nav>
+  <header class="site-header">
+    <nav class="nav">
+      <a href="#home" class="brand">
+        LARALAI'S
+        <small>B O U T I Q U E</small>
+      </a>
 
-  <button class="cart-button" type="button" onclick="goToCart()">
-    ♡ Cart (<span id="cart-count">0</span>)
-  </button>
-</header>
-
-<main>
-  <section class="hero" id="home">
-    <div>
-      <div class="eyebrow">YOUR LITTLE STYLE DESTINATION</div>
-      <h1>Elegance in<br>Every <em>Detail.</em></h1>
-      <p>Discover lovely pieces chosen to bring a little more beauty and confidence into your everyday style.</p>
-      <a class="primary-button" href="#shop">SHOP COLLECTION →</a>
-    </div>
-
-    <div class="hero-art">
-      <div>
-        <span class="flower">✿</span>
-        <strong>Beautifully Yours</strong>
-        <p>Thoughtfully chosen, just for you</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="shop">
-    <div class="section-heading">
-      <div class="eyebrow">THE BOUTIQUE COLLECTION</div>
-      <h2>New Arrivals</h2>
-      <p>Find your next favourite piece.</p>
-    </div>
-
-    <div class="toolbar">
-      <input class="search" id="search" type="search"
-        placeholder="Search products..." oninput="renderProducts()">
-
-      <select class="category" id="category" onchange="renderProducts()">
-        <option value="All">All Categories</option>
-        <option value="Bags">Bags</option>
-        <option value="Clothing">Clothing</option>
-        <option value="Accessories">Accessories</option>
-        <option value="Jewelry">Jewelry</option>
-      </select>
-    </div>
-
-    <div class="products" id="products"></div>
-  </section>
-
-  <section class="section about" id="about">
-    <div class="eyebrow">A NOTE FROM US</div>
-    <h2>A Little More Lovely</h2>
-    <p>Welcome to LARALAI'S BOUTIQUE — a little corner for lovely finds and everyday elegance. We believe that even the smallest details can make your day feel special.</p>
-  </section>
-
-  <section class="section" id="order">
-    <div class="section-heading">
-      <div class="eyebrow">YOUR PICKS, YOUR WAY</div>
-      <h2>Your Shopping Bag</h2>
-      <p>Review your items and fill in your order details.</p>
-    </div>
-
-    <div class="order-layout">
-      <div class="cart-panel" id="cart">
-        <h3>Selected Items</h3>
-        <div id="cart-items">Your bag is empty.</div>
-        <div class="total" id="cart-total">Total: 0 MMK</div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#about">About</a>
       </div>
 
-      <div class="order-panel">
-        <h3>Order Details</h3>
+      <button class="bag-button" onclick="goToOrder()">
+        Bag (<span id="cart-count">0</span>)
+      </button>
+    </nav>
+  </header>
 
-        <form id="order-form">
-          <div class="form-group">
-            <label for="customer-name">Your Name *</label>
-            <input class="field" id="customer-name" required
-              maxlength="100" placeholder="Enter your name">
-          </div>
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="eyebrow">WELCOME TO OUR BOUTIQUE</div>
 
-          <div class="form-group">
-            <label for="customer-phone">Phone Number *</label>
-            <input class="field" id="customer-phone" required
-              type="tel" maxlength="30" placeholder="Enter your phone number">
-          </div>
+          <h1>
+            Elegance in<br>
+            Every <em>Detail.</em>
+          </h1>
 
-          <div class="form-group">
-            <label for="customer-address">Delivery Address *</label>
-            <textarea class="field" id="customer-address" required
-              maxlength="500" placeholder="Township, city and delivery address"></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="customer-note">Additional Notes (optional)</label>
-            <textarea class="field" id="customer-note"
-              maxlength="500" placeholder="Colour, size or other requests"></textarea>
-          </div>
-
-          <p class="form-note">
-            Please check your selected items before placing your order.
+          <p class="hero-copy">
+            Discover lovely pieces selected with care.
+            Find your everyday favorites and make every
+            little moment feel special.
           </p>
 
-          <button class="primary-button" type="submit">PLACE ORDER</button>
-          <div id="message" role="status"></div>
-        </form>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="brand">LARALAI'S BOUTIQUE</div>
-  <p>Thoughtfully chosen · Beautifully yours</p>
-  <p>
-    TikTok:
-    <a href="https://www.tiktok.com/@laralai_2004"
-      target="_blank" rel="noopener">@laralai_2004</a>
-    <br>
-    Telegram:
-    <a href="https://t.me/laralai04"
-      target="_blank" rel="noopener">@laralai04</a>
-  </p>
-  <p>© <span id="year"></span> LARALAI'S BOUTIQUE</p>
-</footer>
-
-<script>
-const products = [
-  {
-    id: 1,
-    name: "Elegant Handbag",
-    category: "Bags",
-    price: 0,
-    icon: "👜",
-    desc: "A lovely everyday companion."
-  },
-  {
-    id: 2,
-    name: "Soft Knitwear",
-    category: "Clothing",
-    price: 0,
-    icon: "🧶",
-    desc: "Soft and comfortable style."
-  },
-  {
-    id: 3,
-    name: "Satin Scarf",
-    category: "Accessories",
-    price: 0,
-    icon: "🧣",
-    desc: "A graceful finishing touch."
-  },
-  {
-    id: 4,
-    name: "Minimal Jewelry",
-    category: "Jewelry",
-    price: 0,
-    icon: "✨",
-    desc: "Simple pieces, timeless charm."
-  }
-];
-
-let cart = [];
-
-function money(amount) {
-  return Number(amount).toLocaleString("en-US") + " MMK";
-}
-
-function renderProducts() {
-  const search = document.getElementById("search").value.toLowerCase().trim();
-  const category = document.getElementById("category").value;
-
-  const filtered = products.filter(p =>
-    p.name.toLowerCase().includes(search) &&
-    (category === "All" || p.category === category)
-  );
-
-  const container = document.getElementById("products");
-
-  if (!filtered.length) {
-    container.innerHTML =
-      '<p class="empty">No products found. Try another search.</p>';
-    return;
-  }
-
-  container.innerHTML = filtered.map(p => `
-    <article class="product">
-      <div class="product-image">
-        ${p.icon}
-        <span>${p.category.toUpperCase()}</span>
-      </div>
-      <div class="product-info">
-        <h3>${p.name}</h3>
-        <p>${p.desc}</p>
-        <div class="price">
-          ${p.price > 0 ? money(p.price) : "Price to be added"}
+          <a href="#shop" class="primary-button">
+            Explore Collection ↗
+          </a>
         </div>
-        <button class="add-button" type="button"
-          onclick="addToCart(${p.id})">＋ Add to Bag</button>
-      </div>
-    </article>
-  `).join("");
-}
 
-function addToCart(id) {
-  const product = products.find(p => p.id === id);
-  if (!product) return;
-
-  const item = cart.find(i => i.id === id);
-
-  if (item) {
-    item.qty++;
-  } else {
-    cart.push({ ...product, qty: 1 });
-  }
-
-  renderCart();
-}
-
-function changeQty(id, amount) {
-  const item = cart.find(i => i.id === id);
-  if (!item) return;
-
-  item.qty += amount;
-
-  if (item.qty <= 0) {
-    cart = cart.filter(i => i.id !== id);
-  }
-
-  renderCart();
-}
-
-function renderCart() {
-  document.getElementById("cart-count").textContent =
-    cart.reduce((sum, item) => sum + item.qty, 0);
-
-  const container = document.getElementById("cart-items");
-
-  if (!cart.length) {
-    container.textContent = "Your bag is empty.";
-  } else {
-    container.innerHTML = cart.map(item => `
-      <div class="cart-item">
-        <div>
-          <strong>${item.name}</strong><br>
-          ${item.price > 0 ? money(item.price) : "Price to be confirmed"}
-          <div style="margin-top:8px">
-            <button type="button"
-              onclick="changeQty(${item.id},-1)">−</button>
-            &nbsp; ${item.qty} &nbsp;
-            <button type="button"
-              onclick="changeQty(${item.id},1)">＋</button>
+        <div class="hero-art">
+          <div class="hero-flower">🪻</div>
+          <div class="hero-art-title">A touch of elegance</div>
+          <div class="hero-art-subtitle">
+            LOVE · STYLE · BEAUTY
           </div>
         </div>
-        <button type="button"
-          onclick="changeQty(${item.id},-${item.qty})">Remove</button>
       </div>
-    `).join("");
-  }
+    </section>
 
-  const total = cart.reduce(
-    (sum, item) => sum + item.price * item.qty, 0
-  );
+    <section class="benefits">
+      <div class="benefits-inner">
+        <div class="benefit">
+          <span>✧</span>
+          Carefully Selected
+        </div>
+        <div class="benefit">
+          <span>♡</span>
+          Made for Your Style
+        </div>
+        <div class="benefit">
+          <span>✦</span>
+          Order with Ease
+        </div>
+      </div>
+    </section>
 
-  const needsPrices = cart.some(item => item.price <= 0);
+    <section class="shop-section" id="shop">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">OUR COLLECTION</div>
+          <h2>Find Your Favorite</h2>
+          <p>Little things that make your style special.</p>
+        </div>
 
-  document.getElementById("cart-total").textContent =
-    "Total: " + money(total) + (needsPrices ? " (prices not set)" : "");
-}
+        <div class="shop-tools">
+          <input
+            id="search"
+            class="search-input"
+            type="search"
+            placeholder="⌕  Search products..."
+            aria-label="Search products"
+          >
 
-function goToCart() {
-  document.getElementById("order").scrollIntoView({
-    behavior: "smooth"
-  });
-}
+          <div class="filters">
+            <button class="filter-button active"
+              onclick="setCategory('All', this)">All</button>
+            <button class="filter-button"
+              onclick="setCategory('Bags', this)">Bags</button>
+            <button class="filter-button"
+              onclick="setCategory('Clothing', this)">Clothing</button>
+            <button class="filter-button"
+              onclick="setCategory('Accessories', this)">Accessories</button>
+          </div>
+        </div>
 
-document.getElementById("order-form").addEventListener("submit", function(event) {
-  event.preventDefault();
+        <div class="products-grid" id="products">
+          <div class="empty-state">Loading collection...</div>
+        </div>
+      </div>
+    </section>
 
-  const message = document.getElementById("message");
-  message.style.display = "block";
+    <section class="about-section" id="about">
+      <div class="about-inner">
+        <div class="eyebrow">OUR LITTLE STORY</div>
+        <h2>Welcome to LARALAI'S</h2>
+        <div class="gold-divider"></div>
 
-  if (!cart.length) {
-    message.textContent =
-      "Please add at least one product to your bag first.";
-    return;
-  }
+        <p>
+          LARALAI'S BOUTIQUE is a little space for lovely finds,
+          soft colors and timeless style. We believe that the
+          smallest details can make an outfit feel special.
+          Thank you for visiting our boutique.
+        </p>
+      </div>
+    </section>
 
-  message.textContent =
-    "Your details are filled in, but this website is not connected to an order database yet. Your order has NOT been sent to the shop. Please connect Firebase or another backend before accepting real orders.";
-});
+    <section class="order-section" id="order">
+      <div class="order-card">
+        <div class="section-heading">
+          <div class="eyebrow">YOUR FAVORITES</div>
+          <h2>Place Your Order</h2>
+        </div>
 
-document.getElementById("year").textContent = new Date().getFullYear();
+        <p class="order-intro">
+          Add your favorite products to your bag, then enter
+          your details. We will contact you to confirm your order.
+        </p>
 
-renderProducts();
-renderCart();
-</script>
+        <div class="cart-box" id="cart-list" aria-live="polite">
+          <p class="cart-empty">Your bag is empty for now.</p>
+        </div>
+
+        <form id="order-form">
+          <div class="field">
+            <label for="customer-name">Your Name *</label>
+            <input
+              id="customer-name"
+              name="name"
+              autocomplete="name"
+              placeholder="Enter your name"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="customer-contact">Phone or Telegram *</label>
+            <input
+              id="customer-contact"
+              name="contact"
+              placeholder="How can we contact you?"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="customer-address">Delivery Address</label>
+            <textarea
+              id="customer-address"
+              name="address"
+              autocomplete="street-address"
+              placeholder="Enter your delivery address"
+            ></textarea>
+          </div>
+
+          <div class="field">
+            <label for="customer-note">Additional Notes</label>
+            <textarea
+              id="customer-note"
+              name="note"
+              placeholder="Color, size or other requests"
+            ></textarea>
+          </div>
+
+          <button class="submit-button" type="submit">
+            Prepare Order
+          </button>
+
+          <div id="form-message" class="form-message"
+            aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">LARALAI'S BOUTIQUE</div>
+    <p>Thank you for being part of our little boutique. ♡</p>
+
+    <div class="social-links">
+      <a href="https://t.me/laralai04"
+         target="_blank" rel="noopener noreferrer">Telegram</a>
+
+      <a href="https://www.tiktok.com/@laralai_2004"
+         target="_blank" rel="noopener noreferrer">TikTok</a>
+    </div>
+
+    <div class="copyright">
+      © <span id="year"></span> LARALAI'S BOUTIQUE
+    </div>
+  </footer>
+
+  <script>
+    // SAMPLE PRODUCTS
+    // Replace the null prices with your real prices in MMK.
+
+    const products = [
+      {
+        id: 1,
+        name: "Elegant Handbag",
+        category: "Bags",
+        emoji: "👜",
+        description: "A lovely bag for your everyday style.",
+        price: null
+      },
+      {
+        id: 2,
+        name: "Soft Knitwear",
+        category: "Clothing",
+        emoji: "🧥",
+        description: "A soft and cozy wardrobe favorite.",
+        price: null
+      },
+      {
+        id: 3,
+        name: "Satin Scarf",
+        category: "Accessories",
+        emoji: "🧣",
+        description: "A delicate touch for any outfit.",
+        price: null
+      },
+      {
+        id: 4,
+        name: "Minimal Jewelry",
+        category: "Accessories",
+        emoji: "✨",
+        description: "Simple details with a golden touch.",
+        price: null
+      }
+    ];
+
+    let selectedCategory = "All";
+    const cart = {};
+
+    const productsElement = document.getElementById("products");
+    const cartElement = document.getElementById("cart-list");
+    const cartCountElement = document.getElementById("cart-count");
+    const formMessage = document.getElementById("form-message");
+
+    function formatPrice(price) {
+      if (price === null || price === undefined || price === "") {
+        return "Price on request";
+      }
+
+      return Number(price).toLocaleString("en-US") + " MMK";
+    }
+
+    function renderProducts() {
+      const searchTerm = document
+        .getElementById("search")
+        .value.toLowerCase()
+        .trim();
+
+      const filteredProducts = products.filter(product => {
+        const categoryMatch =
+          selectedCategory === "All" ||
+          product.category === selectedCategory;
+
+        const searchMatch =
+          product.name.toLowerCase().includes(searchTerm) ||
+          product.category.toLowerCase().includes(searchTerm) ||
+          product.description.toLowerCase().includes(searchTerm);
+
+        return categoryMatch && searchMatch;
+      });
+
+      if (filteredProducts.length === 0) {
+        productsElement.innerHTML =
+          '<div class="empty-state">No products found. Try another search.</div>';
+        return;
+      }
+
+      productsElement.innerHTML = filteredProducts.map(product => {
+        let visualClass = "";
+
+        if (product.category === "Clothing") {
+          visualClass = "clothing";
+        } else if (product.category === "Accessories") {
+          visualClass = "accessories";
+        }
+
+        return `
+          <article class="product-card">
+            <div class="product-visual ${visualClass}">
+              <span class="product-tag">OUR PICK</span>
+              <span class="product-emoji">${product.emoji}</span>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">${product.category}</div>
+              <h3>${product.name}</h3>
+              <p class="product-description">${product.description}</p>
+              <div class="product-price">${formatPrice(product.price)}</div>
+
+              <button class="add-button"
+                onclick="addToCart(${product.id})">
+                Add to Bag +
+              </button>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function setCategory(category, button) {
+      selectedCategory = category;
+
+      document.querySelectorAll(".filter-button").forEach(item => {
+        item.classList.remove("active");
+      });
+
+      button.classList.add("active");
+      renderProducts();
+    }
+
+    function addToCart(id) {
+      cart[id] = (cart[id] || 0) + 1;
+      renderCart();
+
+      formMessage.textContent = "";
+
+      document.getElementById("order").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    function changeQuantity(id, amount) {
+      cart[id] = (cart[id] || 0) + amount;
+
+      if (cart[id] <= 0) {
+        delete cart[id];
+      }
+
+      renderCart();
+    }
+
+    function renderCart() {
+      const entries = Object.entries(cart);
+
+      const totalCount = entries.reduce(
+        (sum, [, quantity]) => sum + quantity,
+        0
+      );
+
+      cartCountElement.textContent = totalCount;
+
+      if (entries.length === 0) {
+        cartElement.innerHTML =
+          '<p class="cart-empty">Your bag is empty for now.</p>';
+        return;
+      }
+
+      let knownTotal = 0;
+      let allPricesKnown = true;
+
+      cartElement.innerHTML = entries.map(([id, quantity]) => {
+        const product = products.find(
+          item => item.id === Number(id)
+        );
+
+        if (product.price === null || product.price === undefined ||
+            product.price === "") {
+          allPricesKnown = false;
+        } else {
+          knownTotal += Number(product.price) * quantity;
+        }
+
+        return `
+          <div class="cart-row">
+            <div class="cart-name">
+              <strong>${product.name}</strong>
+              <div class="cart-price">${formatPrice(product.price)}</div>
+              <button class="remove-button" type="button"
+                onclick="changeQuantity(${id}, -${quantity})">
+                Remove
+              </button>
+            </div>
+
+            <div class="quantity-controls">
+              <button type="button"
+                aria-label="Decrease quantity"
+                onclick="changeQuantity(${id}, -1)">−</button>
+              <span>${quantity}</span>
+              <button type="button"
+                aria-label="Increase quantity"
+                onclick="changeQuantity(${id}, 1)">+</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      const totalText = allPricesKnown
+        ? formatPrice(knownTotal)
+        : "Confirm price with us";
+
+      cartElement.innerHTML += `
+        <div class="cart-total">Total: ${totalText}</div>
+      `;
+    }
+
+    function goToOrder() {
+      document.getElementById("order").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    document.getElementById("search").addEventListener(
+      "input",
+      renderProducts
+    );
+
+    document.getElementById("order-form").addEventListener(
+      "submit",
+      function(event) {
+        event.preventDefault();
+        formMessage.textContent = "";
+
+        if (Object.keys(cart).length === 0) {
+          formMessage.textContent =
+            "Please add at least one product to your bag.";
+          return;
+        }
+
+        const name = document
+          .getElementById("customer-name").value.trim();
+
+        const contact = document
+          .getElementById("customer-contact").value.trim();
+
+        const address = document
+          .getElementById("customer-address").value.trim();
+
+        const note = document
+          .getElementById("customer-note").value.trim();
+
+        const orderItems = Object.entries(cart).map(([id, quantity]) => {
+          const product = products.find(
+            item => item.id === Number(id)
+          );
+
+          return `${product.name} x ${quantity} — ${formatPrice(product.price)}`;
+        });
+
+        const message = [
+          "LARALAI'S BOUTIQUE - ORDER REQUEST",
+          "",
+          "Name: " + name,
+          "Contact: " + contact,
+          "Address: " + (address || "Not provided"),
+          "",
+          "Products:",
+          ...orderItems,
+          "",
+          "Note: " + (note || "None"),
+          "",
+          "Please confirm availability and prices."
+        ].join("\n");
+
+        formMessage.textContent =
+          "Your order summary is ready. Telegram will open so you can send your request. Please check the details before sending.";
+
+        const telegramUrl =
+          "https://t.me/laralai04?text=" + encodeURIComponent(message);
+
+        window.open(telegramUrl, "_blank", "noopener,noreferrer");
+      }
+    );
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    renderProducts();
+    renderCart();
+  </script>
 </body>
 </html>
