@@ -1307,5 +1307,32 @@
     renderProducts();
     renderCart();
   </script>
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+  import {
+    getFirestore,
+    collection,
+    getDocs
+  } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDVblRsQLAA-LOJ-cGc6cZkI0P3XXZZozE",
+    authDomain: "laralai-boutique.firebaseapp.com",
+    projectId: "laralai-boutique",
+    storageBucket: "laralai-boutique.firebasestorage.app",
+    messagingSenderId: "773622455419",
+    appId: "1:773622455419:web:d6d4e04445c663cff1d6de"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  try {
+    const snapshot = await getDocs(collection(db, "products"));
+    console.log("Firebase connected. Products found:", snapshot.size);
+  } catch (error) {
+    console.error("Firebase connection error:", error);
+  }
+  </script>
 </body>
 </html>
